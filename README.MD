@@ -1,0 +1,1 @@
+This is a fork of [zxcvbn4j](https://github.com/nulab/zxcvbn4j) which works with Android
