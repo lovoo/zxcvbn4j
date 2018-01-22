@@ -5,7 +5,6 @@ import android.content.Context;
 import com.nulabinc.zxcvbn.ApplicationContext;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -86,18 +85,22 @@ public class Keyboard {
     }
 
     private static String loadAsString(@ApplicationContext Context context, final String name) {
-        try (final InputStream input = context.getAssets().open(name);
-             final BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"))) {
+        try {
+            final InputStream input = context.getAssets().open(name);
+            final BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"));
             final StringBuilder sb = new StringBuilder(1024 * 4);
             String str;
             while ((str = reader.readLine()) != null) {
                 sb.append(str);
                 sb.append('\n');
             }
+            input.close();
+            reader.close();
             return sb.toString();
-        } catch (final IOException e) {
-            throw new IllegalArgumentException(e);
+        } catch (final Exception e) {
+            e.printStackTrace();
         }
+        return null;
     }
 
     public static Keyboard of(final String graph) {

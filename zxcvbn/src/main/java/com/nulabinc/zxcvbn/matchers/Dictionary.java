@@ -44,14 +44,17 @@ public class Dictionary {
         Map<String, String[]> freqLists = new HashMap<>();
         for (String filename : DICTIONARY_PARAMS) {
             List<String> words = new ArrayList<>();
-            try (InputStream is = context.getAssets().open(buildResourcePath(filename));
-                 BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"))) {
+            try {
+                InputStream is = context.getAssets().open(buildResourcePath(filename));
+                BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
                 String line;
                 while ((line = br.readLine()) != null) {
                     words.add(line);
                 }
-            } catch (IOException e) {
-                throw new RuntimeException("Error while reading " + filename);
+                is.close();
+                br.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             freqLists.put(filename, words.toArray(new String[]{}));
         }

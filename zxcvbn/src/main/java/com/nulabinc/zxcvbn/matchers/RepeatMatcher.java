@@ -40,7 +40,7 @@ public class RepeatMatcher extends BaseMatcher {
             int i = match.start(0);
             int j = match.start(0) + match.group(0).length() - 1;
             Strength baseAnalysis = Scoring.mostGuessableMatchSequence(baseToken,
-                    new Matching(context, new ArrayList<>()).omnimatch(context, baseToken));
+                    new Matching(context, new ArrayList<String>()).omnimatch(context, baseToken));
             List<Match> baseMatches = baseAnalysis.getSequence();
             double baseGuesses = baseAnalysis.getGuesses();
             matches.add(MatchFactory.createRepeatMatch(i, j, match.group(0), baseToken, baseGuesses, baseMatches,

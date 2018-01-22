@@ -29,12 +29,12 @@ public class RegexGuess extends BaseGuess {
         return 0;
     }
 
-    private static final int parseInt(String s) {
+    private static int parseInt(String s) {
         int result = 0;
         try {
             result = Integer.parseInt(s);
         } catch (NumberFormatException e) {
-            System.out.println(e.getStackTrace());
+            e.printStackTrace();
         }
         return result;
     }

@@ -18,7 +18,7 @@ public class Matching {
     private final Map<String, Map<String, Integer>> rankedDictionaries;
 
     public Matching(Context context) {
-        this(context, new ArrayList<>());
+        this(context, new ArrayList<String>());
     }
 
     public Matching(@ApplicationContext Context context, List<String> orderedList) {

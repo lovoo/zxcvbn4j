@@ -21,9 +21,9 @@ public class L33tSubsEnumerator {
         Character[] keys = this.table.keySet().toArray(new Character[]{});
         this.helper(keys);
         List<Map<Character, Character>> subDicts = new ArrayList<>();
-        for (ArrayList<Character[]> sub: this.subs) {
+        for (ArrayList<Character[]> sub : this.subs) {
             Map<Character, Character> subDict = new HashMap<>();
-            for (Character[] ref: sub) {
+            for (Character[] ref : sub) {
                 subDict.put(ref[0], ref[1]);
             }
             subDicts.add(subDict);
@@ -34,17 +34,17 @@ public class L33tSubsEnumerator {
     private List<ArrayList<Character[]>> dedup(List<ArrayList<Character[]>> subs) {
         List<ArrayList<Character[]>> deduped = new ArrayList<>();
         Map<String, Boolean> members = new HashMap<>();
-        for (ArrayList<Character[]> sub: subs) {
+        for (ArrayList<Character[]> sub : subs) {
             Map<Integer, Character[]> assoc = new HashMap<>();
             for (int i = 0; i < sub.size(); i++) {
                 assoc.put(i, sub.get(i));
             }
             List<String> strings = new ArrayList<>();
-            for (Map.Entry<Integer, Character[]> entry: assoc.entrySet()) {
-                strings.add(entry.getValue()+","+entry.getKey());
+            for (Map.Entry<Integer, Character[]> entry : assoc.entrySet()) {
+                strings.add(entry.getValue() + "," + entry.getKey());
             }
             StringBuilder builder = new StringBuilder();
-            for(String str : strings) {
+            for (String str : strings) {
                 builder.append(str).append("-");
             }
             String label = builder.substring(0, builder.length() - 1);
@@ -64,8 +64,8 @@ public class L33tSubsEnumerator {
             restKeys.add(keys[i]);
         }
         List<ArrayList<Character[]>> nextSubs = new ArrayList<>();
-        for (Character l33tChr: this.table.get(firstKey)) {
-            for (ArrayList<Character[]> sub: this.subs) {
+        for (Character l33tChr : this.table.get(firstKey)) {
+            for (ArrayList<Character[]> sub : this.subs) {
                 int dupL33tIndex = -1;
                 for (int i = 0; i < sub.size(); i++) {
                     if (sub.get(i)[0] == l33tChr) {

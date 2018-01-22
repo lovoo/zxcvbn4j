@@ -15,7 +15,7 @@ public class L33tMatcher extends BaseMatcher {
     private final Map<String, Map<String, Integer>> rankedDictionaries;
 
     public L33tMatcher() {
-        this(new HashMap<>());
+        this(new HashMap<String, Map<String, Integer>>());
     }
 
     public L33tMatcher(Map<String, Map<String, Integer>> rankedDictionaries) {
