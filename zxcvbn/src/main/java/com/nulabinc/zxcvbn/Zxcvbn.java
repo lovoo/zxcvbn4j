@@ -10,15 +10,17 @@ import java.util.List;
 
 public class Zxcvbn {
 
-    public Zxcvbn() {}
+    private Zxcvbn() {}
+
+    @BlockingCall public Zxcvbn(@ApplicationContext Context context) {
+        Keyboard.initKeyboard(context.getApplicationContext());
+    }
 
     @BlockingCall public Strength measure(@ApplicationContext Context context, String password) {
-        Keyboard.initKeyboard(context);
         return measure(context, password, null);
     }
 
     @BlockingCall public Strength measure(@ApplicationContext Context context, String password, List<String> sanitizedInputs) {
-        Keyboard.initKeyboard(context);
         context = context.getApplicationContext();
         if (password == null) {
             throw new IllegalArgumentException("Password is null.");
